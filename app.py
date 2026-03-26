@@ -1,11 +1,11 @@
 import streamlit as st
 import json
 
-# مسارات الملفات داخل مجلد data
-PATH_COMMUNES = "data/data_communes_algeria.json"
-PATH_MATERIAUX = "data/dtr_materiaux.json"
-PATH_PAROIS = "data/dtr_parois_enterrees.json"
-PATH_PONTS = "data/dtr_ponts_thermiques.json"
+# المسارات مباشرة بجانب app.py
+PATH_COMMUNES = "data_communes_algeria.json"
+PATH_MATERIAUX = "dtr_materiaux.json"
+PATH_PAROIS = "dtr_parois_enterrees.json"
+PATH_PONTS = "dtr_ponts_thermiques.json"
 
 # تحميل البيانات
 with open(PATH_COMMUNES, "r", encoding="utf-8") as f:
