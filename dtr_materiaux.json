@@ -1,0 +1,408 @@
+{
+  "metadata": {
+    "titre": "Réglementation Thermique du Bâtiment - DTR C 3.2/4",
+    "version": "2016",
+    "source": "CNERIB",
+    "type": "Matériaux et compositions de parois",
+    "date_export": "2026-03-09"
+  },
+  "materiaux_homogenes": [
+    {
+      "id": "beton_plein_lourd",
+      "nom": "Béton plein (lourd)",
+      "masse_volumique_kg_m3": "2200-2400",
+      "conductivite_thermique_W_mC": 1.75,
+      "capacite_thermique_J_kgC": 1080,
+      "source": "Annexe A.2, p. 163"
+    },
+    {
+      "id": "beton_granulats_courants",
+      "nom": "Béton de granulats courants",
+      "masse_volumique_kg_m3": "2000-2300",
+      "conductivite_thermique_W_mC": 1.6,
+      "capacite_thermique_J_kgC": 1080,
+      "source": "Annexe A.2, p. 163"
+    },
+    {
+      "id": "mortier_ciment",
+      "nom": "Mortier de ciment",
+      "masse_volumique_kg_m3": "1900-2200",
+      "conductivite_thermique_W_mC": 1.4,
+      "capacite_thermique_J_kgC": 1080,
+      "source": "Annexe A.2, p. 163"
+    },
+    {
+      "id": "mortier_platre",
+      "nom": "Mortier de plâtre",
+      "masse_volumique_kg_m3": "750-1000",
+      "conductivite_thermique_W_mC": 0.35,
+      "capacite_thermique_J_kgC": 936,
+      "source": "Annexe A.2, p. 163"
+    },
+    {
+      "id": "platre_carreaux",
+      "nom": "Plâtre (carreaux)",
+      "masse_volumique_kg_m3": "900-1000",
+      "conductivite_thermique_W_mC": 0.35,
+      "capacite_thermique_J_kgC": 936,
+      "source": "Annexe A.2, p. 163"
+    },
+    {
+      "id": "brique_silico_calcaire_pleine",
+      "nom": "Brique silico-calcaire pleine",
+      "masse_volumique_kg_m3": "1600-2000",
+      "conductivite_thermique_W_mC": 0.95,
+      "capacite_thermique_J_kgC": 936,
+      "source": "Annexe A.2, p. 163"
+    },
+    {
+      "id": "polystyrene_expanse",
+      "nom": "Polystyrène expansé",
+      "masse_volumique_kg_m3": "9-35",
+      "conductivite_thermique_W_mC": 0.042,
+      "capacite_thermique_J_kgC": 1404,
+      "source": "Annexe A.2, p. 164"
+    },
+    {
+      "id": "laine_verre",
+      "nom": "Laine de verre",
+      "masse_volumique_kg_m3": "7-65",
+      "conductivite_thermique_W_mC": 0.039,
+      "capacite_thermique_J_kgC": 612,
+      "source": "Annexe A.2, p. 164"
+    },
+    {
+      "id": "laine_roche",
+      "nom": "Laine de roche",
+      "masse_volumique_kg_m3": "18-80",
+      "conductivite_thermique_W_mC": 0.042,
+      "capacite_thermique_J_kgC": 612,
+      "source": "Annexe A.2, p. 164"
+    },
+    {
+      "id": "bois_resineux_leger",
+      "nom": "Bois résineux léger (sapin, épicéa)",
+      "masse_volumique_kg_m3": "300-450",
+      "conductivite_thermique_W_mC": 0.12,
+      "capacite_thermique_J_kgC": 2160,
+      "source": "Annexe A.2, p. 163"
+    },
+    {
+      "id": "bois_feuillus_mi_lourds",
+      "nom": "Bois feuillus mi-lourds (chêne, hêtre)",
+      "masse_volumique_kg_m3": "600-750",
+      "conductivite_thermique_W_mC": 0.23,
+      "capacite_thermique_J_kgC": 2160,
+      "source": "Annexe A.2, p. 163"
+    },
+    {
+      "id": "contreplaque",
+      "nom": "Contreplaqué",
+      "masse_volumique_kg_m3": "450-550",
+      "conductivite_thermique_W_mC": 0.15,
+      "capacite_thermique_J_kgC": 1512,
+      "source": "Annexe A.2, p. 164"
+    },
+    {
+      "id": "panneau_fibres_isolant",
+      "nom": "Panneau de fibres (isolant)",
+      "masse_volumique_kg_m3": "200-250",
+      "conductivite_thermique_W_mC": 0.07,
+      "capacite_thermique_J_kgC": 1512,
+      "source": "Annexe A.2, p. 164"
+    },
+    {
+      "id": "carrelage_granito",
+      "nom": "Carrelage (granito)",
+      "masse_volumique_kg_m3": 2200,
+      "conductivite_thermique_W_mC": 2.1,
+      "capacite_thermique_J_kgC": 936,
+      "source": "Annexe A.2, p. 164"
+    },
+    {
+      "id": "acier",
+      "nom": "Acier",
+      "masse_volumique_kg_m3": 7780,
+      "conductivite_thermique_W_mC": 52,
+      "capacite_thermique_J_kgC": 468,
+      "source": "Annexe A.2, p. 164"
+    },
+    {
+      "id": "aluminium",
+      "nom": "Aluminium",
+      "masse_volumique_kg_m3": 2700,
+      "conductivite_thermique_W_mC": 230,
+      "capacite_thermique_J_kgC": 936,
+      "source": "Annexe A.2, p. 164"
+    },
+    {
+      "id": "verre",
+      "nom": "Verre",
+      "masse_volumique_kg_m3": 2700,
+      "conductivite_thermique_W_mC": 1.1,
+      "capacite_thermique_J_kgC": 792,
+      "source": "Annexe A.2, p. 164"
+    },
+    {
+      "id": "amiante_ciment",
+      "nom": "Amiante ciment",
+      "masse_volumique_kg_m3": "1400-1800",
+      "conductivite_thermique_W_mC": 0.95,
+      "capacite_thermique_J_kgC": 864,
+      "source": "Annexe A.2, p. 164"
+    },
+    {
+      "id": "asphalte",
+      "nom": "Asphalte",
+      "masse_volumique_kg_m3": 2100,
+      "conductivite_thermique_W_mC": 0.7,
+      "capacite_thermique_J_kgC": 1044,
+      "source": "Annexe A.2, p. 164"
+    }
+  ],
+  "materiaux_heterogenes": [
+    {
+      "id": "brique_creuse",
+      "nom": "Brique creuse",
+      "masse_volumique_equivalente_kg_m3": 900,
+      "conductivite_equivalente_W_mC": 0.48,
+      "resistances_par_epaisseur": [
+        { "epaisseur_cm": 7.5, "resistance_m2C_W": 0.16, "source": "Annexe A.3.2.1, p. 165" },
+        { "epaisseur_cm": 10, "resistance_m2C_W": 0.20, "source": "Annexe A.3.2.1, p. 165" },
+        { "epaisseur_cm": 12.5, "resistance_m2C_W": 0.27, "source": "Annexe A.3.2.1, p. 165" },
+        { "epaisseur_cm": 15, "resistance_m2C_W": 0.30, "source": "Annexe A.3.2.1, p. 165" },
+        { "epaisseur_cm": 17.5, "resistance_m2C_W": 0.33, "source": "Annexe A.3.2.1, p. 165" },
+        { "epaisseur_cm": 20, "resistance_m2C_W": 0.38, "source": "Annexe A.3.2.1, p. 165" }
+      ],
+      "source": "Annexe A.3.2.1, p. 165"
+    },
+    {
+      "id": "parpaing_creux_lourd",
+      "nom": "Parpaing creux (béton granulats lourds)",
+      "masse_volumique_equivalente_kg_m3": 1300,
+      "conductivite_equivalente_W_mC": 1.1,
+      "resistances_par_epaisseur": [
+        { "epaisseur_cm": 7.5, "resistance_m2C_W": 0.07, "source": "Annexe A.3.2.2, p. 166" },
+        { "epaisseur_cm": 10, "resistance_m2C_W": 0.09, "source": "Annexe A.3.2.2, p. 166" },
+        { "epaisseur_cm": 12.5, "resistance_m2C_W": 0.10, "source": "Annexe A.3.2.2, p. 166" },
+        { "epaisseur_cm": 15, "resistance_m2C_W": 0.12, "source": "Annexe A.3.2.2, p. 166" },
+        { "epaisseur_cm": 17.5, "resistance_m2C_W": 0.14, "source": "Annexe A.3.2.2, p. 166" },
+        { "epaisseur_cm": 20, "resistance_m2C_W": 0.16, "source": "Annexe A.3.2.2, p. 166" },
+        { "epaisseur_cm": 22.5, "resistance_m2C_W": 0.18, "source": "Annexe A.3.2.2, p. 166" }
+      ],
+      "source": "Annexe A.3.2.2, p. 166"
+    },
+    {
+      "id": "parpaing_creux_laitier",
+      "nom": "Parpaing creux (béton de laitier)",
+      "masse_volumique_equivalente_kg_m3": 1300,
+      "conductivite_equivalente_W_mC": 0.65,
+      "resistances_par_epaisseur": [
+        { "epaisseur_cm": 7.5, "resistance_m2C_W": 0.13, "source": "Annexe A.3.2.2, p. 166" },
+        { "epaisseur_cm": 10, "resistance_m2C_W": 0.16, "source": "Annexe A.3.2.2, p. 166" },
+        { "epaisseur_cm": 12.5, "resistance_m2C_W": 0.19, "source": "Annexe A.3.2.2, p. 166" },
+        { "epaisseur_cm": 15, "resistance_m2C_W": 0.22, "source": "Annexe A.3.2.2, p. 166" },
+        { "epaisseur_cm": 17.5, "resistance_m2C_W": 0.25, "source": "Annexe A.3.2.2, p. 166" },
+        { "epaisseur_cm": 20, "resistance_m2C_W": 0.28, "source": "Annexe A.3.2.2, p. 166" }
+      ],
+      "source": "Annexe A.3.2.2, p. 166"
+    },
+    {
+      "id": "plancher_entrevous_beton_courant",
+      "nom": "Plancher avec entrevous béton courant",
+      "composition": "Entrevous béton + dalle compression béton",
+      "resistances_par_hauteur": [
+        { "hauteur_cm": 12, "resistance_m2C_W": 0.12, "source": "Annexe A.3.2.3.1, p. 166" },
+        { "hauteur_cm": 16, "resistance_m2C_W": 0.14, "source": "Annexe A.3.2.3.1, p. 166" },
+        { "hauteur_cm": 20, "resistance_m2C_W": 0.16, "source": "Annexe A.3.2.3.1, p. 166" },
+        { "hauteur_cm": 25, "resistance_m2C_W": 0.19, "source": "Annexe A.3.2.3.1, p. 166" }
+      ],
+      "source": "Annexe A.3.2.3.1, p. 166"
+    },
+    {
+      "id": "plancher_entrevous_terre_cuite",
+      "nom": "Plancher avec entrevous terre cuite",
+      "composition": "Entrevous terre cuite + dalle compression béton",
+      "resistances_par_hauteur": [
+        { "hauteur_cm": 12, "resistance_m2C_W": 0.19, "source": "Annexe A.3.2.3.1, p. 166" },
+        { "hauteur_cm": 16, "resistance_m2C_W": 0.23, "source": "Annexe A.3.2.3.1, p. 166" },
+        { "hauteur_cm": 20, "resistance_m2C_W": 0.26, "source": "Annexe A.3.2.3.1, p. 166" },
+        { "hauteur_cm": 25, "resistance_m2C_W": 0.31, "source": "Annexe A.3.2.3.1, p. 166" }
+      ],
+      "source": "Annexe A.3.2.3.1, p. 166"
+    },
+    {
+      "id": "plancher_entrevous_polystyrene",
+      "nom": "Plancher avec entrevous polystyrène expansé",
+      "composition": "Entrevous polystyrène + dalle compression",
+      "resistances_par_hauteur_LP": [
+        { "lp_cm": "8-9", "hauteur_12cm": 1.00, "hauteur_16cm": 1.18, "hauteur_20cm": 1.35, "source": "Annexe A.3.2.3.2, p. 167" },
+        { "lp_cm": "10-11", "hauteur_12cm": 0.86, "hauteur_16cm": 1.02, "hauteur_20cm": 1.15, "source": "Annexe A.3.2.3.2, p. 167" },
+        { "lp_cm": "12-13", "hauteur_12cm": 0.76, "hauteur_16cm": 0.89, "hauteur_20cm": 1.00, "source": "Annexe A.3.2.3.2, p. 167" },
+        { "lp_cm": "14-15", "hauteur_12cm": 0.67, "hauteur_16cm": 0.79, "hauteur_20cm": 0.89, "source": "Annexe A.3.2.3.2, p. 167" }
+      ],
+      "source": "Annexe A.3.2.3.2, p. 167"
+    }
+  ],
+  "parois_types": [
+    {
+      "id": "mur_courant_non_iso",
+      "type": "Mur extérieur courant",
+      "categorie": "Mur",
+      "composition": [
+        { "materiau_id": "mortier_ciment", "epaisseur_cm": 2 },
+        { "materiau_id": "brique_creuse", "epaisseur_cm": 10 },
+        { "type": "lame_dair", "epaisseur_cm": 10, "ventilation": "non ventilée", "resistance_m2C_W": 0.16 },
+        { "materiau_id": "brique_creuse", "epaisseur_cm": 10 },
+        { "materiau_id": "mortier_platre", "epaisseur_cm": 2 }
+      ],
+      "epaisseur_totale_cm": 34,
+      "coefficient_K_W_m2C": 1.30,
+      "source": "Annexe B.12, p. 203"
+    },
+    {
+      "id": "mur_iso_10cm_polystyrene",
+      "type": "Mur extérieur isolé (Polystyrène 10cm)",
+      "categorie": "Mur",
+      "composition": [
+        { "materiau_id": "mortier_ciment", "epaisseur_cm": 2 },
+        { "materiau_id": "brique_creuse", "epaisseur_cm": 10 },
+        { "materiau_id": "polystyrene_expanse", "epaisseur_cm": 10 },
+        { "materiau_id": "brique_creuse", "epaisseur_cm": 10 },
+        { "materiau_id": "mortier_platre", "epaisseur_cm": 2 }
+      ],
+      "epaisseur_totale_cm": 34,
+      "coefficient_K_W_m2C": 0.35,
+      "source": "§ III.6, p. 55-56"
+    },
+    {
+      "id": "toiture_terrasse_iso_8cm",
+      "type": "Toiture-terrasse isolée",
+      "categorie": "Toiture",
+      "composition": [
+        { "materiau_id": "etancheite_bitume", "epaisseur_cm": 1, "conductivite_W_mC": 0.23 },
+        { "materiau_id": "polystyrene_expanse", "epaisseur_cm": 8 },
+        { "materiau_id": "beton_plein_lourd", "epaisseur_cm": 20 },
+        { "materiau_id": "mortier_platre", "epaisseur_cm": 1 }
+      ],
+      "epaisseur_totale_cm": 30,
+      "coefficient_K_W_m2C": 0.48,
+      "source": "§ III.7, p. 57"
+    },
+    {
+      "id": "plancher_bas_terre_plein",
+      "type": "Plancher bas sur terre-plein",
+      "categorie": "Plancher",
+      "composition": [
+        { "materiau_id": "carrelage_granito", "epaisseur_cm": 3 },
+        { "materiau_id": "mortier_ciment", "epaisseur_cm": 2 },
+        { "materiau_id": "beton_plein_lourd", "epaisseur_cm": 30 }
+      ],
+      "epaisseur_totale_cm": 35,
+      "coefficient_K_W_m2C": 2.78,
+      "source": "Annexe B.12, p. 204"
+    },
+    {
+      "id": "fenetre_simple_vitrage_metal",
+      "type": "Fenêtre simple vitrage",
+      "categorie": "Vitrage",
+      "composition": "Vitrage simple 4mm + Menuiserie métallique",
+      "coefficient_K_W_m2C": 5.8,
+      "source": "Tableau 3.3, p. 47"
+    },
+    {
+      "id": "fenetre_simple_vitrage_bois",
+      "type": "Fenêtre simple vitrage",
+      "categorie": "Vitrage",
+      "composition": "Vitrage simple 4mm + Menuiserie bois",
+      "coefficient_K_W_m2C": 5.0,
+      "source": "Tableau 3.3, p. 47"
+    },
+    {
+      "id": "fenetre_double_vitrage_standard",
+      "type": "Fenêtre double vitrage standard",
+      "categorie": "Vitrage",
+      "composition": "Vitrage double (4/6/4) lame air + Menuiserie bois",
+      "coefficient_K_W_m2C": 2.9,
+      "source": "§ III.6, p. 56"
+    },
+    {
+      "id": "fenetre_double_vitrage_metal",
+      "type": "Fenêtre double vitrage (lame 6mm)",
+      "categorie": "Vitrage",
+      "composition": "Vitrage double (4/6/4) + Menuiserie métallique",
+      "coefficient_K_W_m2C": 3.9,
+      "source": "Tableau 3.3, p. 47"
+    },
+    {
+      "id": "porte_metal_pleine",
+      "type": "Porte métallique pleine",
+      "categorie": "Porte",
+      "composition": "Tôle métallique",
+      "coefficient_K_W_m2C": 5.8,
+      "source": "Tableau 3.10, p. 55"
+    },
+    {
+      "id": "porte_bois_pleine",
+      "type": "Porte bois pleine",
+      "categorie": "Porte",
+      "composition": "Bois massif",
+      "coefficient_K_W_m2C": 3.5,
+      "source": "Tableau 3.10, p. 55"
+    },
+    {
+      "id": "porte_bois_vitree_30",
+      "type": "Porte bois avec vitrage <30%",
+      "categorie": "Porte",
+      "coefficient_K_W_m2C": 4.0,
+      "source": "Tableau 3.10, p. 55"
+    }
+  ],
+  "lames_dair": {
+    "source": "Tableaux 3.1 et 3.2, p. 45-46",
+    "resistances_thermiques": [
+      { "type": "non ventilée", "position": "verticale", "epaisseur_mm": "5-7", "R_m2C_W": 0.11, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "verticale", "epaisseur_mm": "8-9", "R_m2C_W": 0.13, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "verticale", "epaisseur_mm": "10-11", "R_m2C_W": 0.14, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "verticale", "epaisseur_mm": "12-13", "R_m2C_W": 0.15, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "verticale", "epaisseur_mm": "14-24", "R_m2C_W": 0.16, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "verticale", "epaisseur_mm": "25-50", "R_m2C_W": 0.16, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "verticale", "epaisseur_mm": "55-300", "R_m2C_W": 0.16, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "horizontale", "flux": "ascendant", "epaisseur_mm": "5-7", "R_m2C_W": 0.11, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "horizontale", "flux": "ascendant", "epaisseur_mm": "8-9", "R_m2C_W": 0.12, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "horizontale", "flux": "ascendant", "epaisseur_mm": "10-11", "R_m2C_W": 0.13, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "horizontale", "flux": "ascendant", "epaisseur_mm": "12-13", "R_m2C_W": 0.14, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "horizontale", "flux": "ascendant", "epaisseur_mm": "14-24", "R_m2C_W": 0.14, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "horizontale", "flux": "ascendant", "epaisseur_mm": "25-50", "R_m2C_W": 0.14, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "horizontale", "flux": "ascendant", "epaisseur_mm": "55-300", "R_m2C_W": 0.14, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "horizontale", "flux": "descendant", "epaisseur_mm": "5-7", "R_m2C_W": 0.11, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "horizontale", "flux": "descendant", "epaisseur_mm": "8-9", "R_m2C_W": 0.13, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "horizontale", "flux": "descendant", "epaisseur_mm": "10-11", "R_m2C_W": 0.14, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "horizontale", "flux": "descendant", "epaisseur_mm": "12-13", "R_m2C_W": 0.15, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "horizontale", "flux": "descendant", "epaisseur_mm": "14-24", "R_m2C_W": 0.16, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "horizontale", "flux": "descendant", "epaisseur_mm": "25-50", "R_m2C_W": 0.18, "source": "Tableau 3.1, p. 45" },
+      { "type": "non ventilée", "position": "horizontale", "flux": "descendant", "epaisseur_mm": "55-300", "R_m2C_W": 0.20, "source": "Tableau 3.1, p. 45" },
+      { "type": "faiblement ventilée", "position": "verticale", "epaisseur_mm": "5-7", "R_m2C_W": 0.055, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "verticale", "epaisseur_mm": "7-9", "R_m2C_W": 0.065, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "verticale", "epaisseur_mm": "9-11", "R_m2C_W": 0.070, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "verticale", "epaisseur_mm": "11-13", "R_m2C_W": 0.075, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "verticale", "epaisseur_mm": "14-24", "R_m2C_W": 0.080, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "verticale", "epaisseur_mm": "25-50", "R_m2C_W": 0.080, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "verticale", "epaisseur_mm": "55-300", "R_m2C_W": 0.080, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "horizontale", "flux": "ascendant", "epaisseur_mm": "5-7", "R_m2C_W": 0.055, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "horizontale", "flux": "ascendant", "epaisseur_mm": "7-9", "R_m2C_W": 0.060, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "horizontale", "flux": "ascendant", "epaisseur_mm": "9-11", "R_m2C_W": 0.065, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "horizontale", "flux": "ascendant", "epaisseur_mm": "11-13", "R_m2C_W": 0.070, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "horizontale", "flux": "ascendant", "epaisseur_mm": "14-24", "R_m2C_W": 0.070, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "horizontale", "flux": "ascendant", "epaisseur_mm": "25-50", "R_m2C_W": 0.070, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "horizontale", "flux": "ascendant", "epaisseur_mm": "55-300", "R_m2C_W": 0.070, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "horizontale", "flux": "descendant", "epaisseur_mm": "5-7", "R_m2C_W": 0.060, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "horizontale", "flux": "descendant", "epaisseur_mm": "7-9", "R_m2C_W": 0.065, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "horizontale", "flux": "descendant", "epaisseur_mm": "9-11", "R_m2C_W": 0.070, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "horizontale", "flux": "descendant", "epaisseur_mm": "11-13", "R_m2C_W": 0.075, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "horizontale", "flux": "descendant", "epaisseur_mm": "14-24", "R_m2C_W": 0.080, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "horizontale", "flux": "descendant", "epaisseur_mm": "25-50", "R_m2C_W": 0.090, "source": "Tableau 3.2, p. 45" },
+      { "type": "faiblement ventilée", "position": "horizontale", "flux": "descendant", "epaisseur_mm": "55-300", "R_m2C_W": 0.100, "source": "Tableau 3.2, p. 45" }
+    ]
+  }
+}

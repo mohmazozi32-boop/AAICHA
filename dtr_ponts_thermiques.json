@@ -1,0 +1,207 @@
+{
+  "metadata": {
+    "titre": "Coefficients de ponts thermiques - DTR C 3.2/4",
+    "version": "2016",
+    "source": "CNERIB",
+    "description": "Formules pour le calcul détaillé des ponts thermiques (chapitre IV).",
+    "date_export": "2026-03-09"
+  },
+  "forfaitaire": {
+    "source": "§ IV.2.1, p. 58",
+    "valeur": 0.20,
+    "description": "Majoration forfaitaire de 20% des pertes surfaciques"
+  },
+  "liaisons_mur_menuiserie": {
+    "source": "Tableau 4.1, p. 61",
+    "cas": [
+      {
+        "type_isolation": "repartie",
+        "position": "nu intérieur",
+        "formule": "0",
+        "conditions": "Menuiserie au nu intérieur"
+      },
+      {
+        "type_isolation": "repartie",
+        "position": "ébrasement",
+        "formule": "0.4 * e / (Rm + 0.15)",
+        "conditions": "Menuiserie en ébrasement"
+      },
+      {
+        "type_isolation": "repartie",
+        "position": "nu extérieur",
+        "formule": "0.4 * e / (Rm + 0.15)",
+        "conditions": "Menuiserie au nu extérieur"
+      },
+      {
+        "type_isolation": "exterieure",
+        "position": "nu intérieur, isolation arrêtée",
+        "formule": "0.4 * e / (Rm + 0.15)",
+        "conditions": "Menuiserie au nu intérieur, isolation arrêtée au droit du tableau"
+      },
+      {
+        "type_isolation": "exterieure",
+        "position": "nu intérieur, isolation recouvrant",
+        "formule": "0",
+        "conditions": "Menuiserie au nu intérieur, isolation recouvrant le tableau"
+      },
+      {
+        "type_isolation": "exterieure",
+        "position": "nu extérieur",
+        "formule": "0",
+        "conditions": "Menuiserie au nu extérieur ou presque"
+      },
+      {
+        "type_isolation": "interieure",
+        "position": "nu extérieur, isolation arrêtée",
+        "formule": "0.4 * e / (Rm + 0.15)",
+        "conditions": "Menuiserie au nu extérieur, isolation arrêtée au droit du tableau"
+      },
+      {
+        "type_isolation": "interieure",
+        "position": "nu extérieur, isolation recouvrant",
+        "formule": "0",
+        "conditions": "Menuiserie au nu extérieur, isolation recouvrant le tableau"
+      },
+      {
+        "type_isolation": "interieure",
+        "position": "nu intérieur",
+        "formule": "0",
+        "conditions": "Menuiserie au nu intérieur ou presque"
+      }
+    ],
+    "notations": {
+      "e": "épaisseur du mur sans isolant (m)",
+      "Rm": "résistance thermique du mur sans résistances superficielles (m²·°C/W)"
+    }
+  },
+  "liaisons_deux_parois_exterieures": {
+    "source": "Tableaux 4.2, 4.3, 4.4, p. 62-64",
+    "cas": [
+      {
+        "type": "isolation répartie, parois identiques",
+        "formule": "0.2 * K * e",
+        "notations": { "K": "moyenne des K des deux parois sans isolant", "e": "épaisseur moyenne sans isolant" }
+      },
+      {
+        "type": "isolation répartie, parois différentes",
+        "formule": "0.2 * e1 / (0.2 + R2) * e2",
+        "notations": { "e1": "épaisseur paroi ne faisant pas l'angle", "R2": "résistance paroi faisant l'angle", "e2": "épaisseur paroi faisant l'angle" }
+      },
+      {
+        "type": "angle avec poteau béton",
+        "formule": "0.45 * e",
+        "notations": { "e": "épaisseur du poteau" }
+      },
+      {
+        "type": "isolation intérieure, angle rentrant, parois identiques",
+        "formule": "0.6 * K * e"
+      },
+      {
+        "type": "isolation intérieure, angle rentrant, parois différentes",
+        "formule": "0.6 * K2 * e",
+        "notations": { "K2": "K de la paroi faisant l'angle sans isolant" }
+      },
+      {
+        "type": "isolation extérieure, angle saillant, parois identiques",
+        "formule": "0.6 * K * e"
+      },
+      {
+        "type": "isolation extérieure, angle saillant, parois différentes",
+        "formule": "0.6 * K2 * e"
+      },
+      {
+        "type": "isolation répartie + isolation intérieure",
+        "formule": "0.4 * e / (R2 + 0.15) + 0.4 * e1 / (R1 + 0.15)",
+        "source": "Tableau 4.3, p. 63"
+      },
+      {
+        "type": "isolation intérieure + isolation extérieure, angle saillant",
+        "formule": "0.3 * e1 * (1+α) / (0.06 + R1 + R'2)",
+        "source": "Tableau 4.4, p. 64",
+        "notations": { "α": "coefficient donné par tableau 4.7" }
+      },
+      {
+        "type": "isolation intérieure + isolation extérieure, angle rentrant",
+        "formule": "-0.30 * e1 * (1+α) / (0.06 + 0.5*R1 + R'2)",
+        "source": "Tableau 4.4, p. 64"
+      }
+    ]
+  },
+  "liaisons_paroi_exterieure_interieure": {
+    "source": "Tableaux 4.5, 4.6, p. 65-66",
+    "cas": [
+      {
+        "type": "paroi extérieure isolation répartie, paroi intérieure non isolée",
+        "formule": "0.4 * e / (R + 0.15)"
+      },
+      {
+        "type": "paroi extérieure isolation répartie, paroi intérieure isolée (r_i ≥ 0.3)",
+        "formule": "0.4 * e / (R + 0.25)"
+      },
+      {
+        "type": "paroi extérieure isolation extérieure, paroi intérieure non isolée",
+        "formule": "0.4 * e / (R + 0.15)"
+      },
+      {
+        "type": "paroi extérieure isolation extérieure, paroi intérieure partiellement isolée (longueur l)",
+        "formule": "0.4 * e * (1+α) / (R + 0.15) + rs",
+        "source": "Tableau 4.6, p. 66"
+      },
+      {
+        "type": "paroi extérieure isolation extérieure, paroi intérieure revêtue sur trois faces",
+        "formule": "0.4 * e * (1+α) / (R + 0.15) + rs",
+        "source": "Tableau 4.6, p. 66"
+      },
+      {
+        "type": "paroi extérieure isolation intérieure, paroi intérieure non isolée",
+        "formule": "0.4 * e / (R + 0.15)"
+      },
+      {
+        "type": "paroi extérieure isolation intérieure, paroi intérieure revêtue sur deux faces (r_i' ≥ 0.5)",
+        "formule": "0.4 * e * (1+α) / (R + 0.25) + rs"
+      }
+    ]
+  },
+  "tableaux_auxiliaires": {
+    "alpha": {
+      "source": "Tableau 4.7, p. 68",
+      "description": "Coefficient α en fonction de K2 et de la résistance de l'isolant",
+      "K2": [1.5, 2.0, 2.5, 3.0, 3.5, 4.0],
+      "r_isolation": [0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 3.0],
+      "matrice": [
+        [0.31, 0.60, 1.30, 0.15, 0.60, 1.20, 0.07, 0.60, 1.00, 0],
+        [0.32, 0.60, 0.90, 0.19, 0.60, 0.80, 0.07, 0.41, 0.60, 0.70],
+        [0.23, 0.56, 0.60, 0.60, 0.11, 0.32, 0.60, 0.60, 0.50, 0],
+        [0.19, 0.38, 0.60, 0.45, 0.02, 0.19, 0.38, 0.60, 0.60, 0],
+        [0.09, 0.23, 0.41, 0.60, 0.60, 0.07, 0.23, 0.38, 0.56, 0.60],
+        [0, 0.09, 0.23, 0.38, 0.56, 0.60, 0.60, 0.29, 0.32, 0.46]
+      ]
+    },
+    "rs_trois_faces": {
+      "source": "Tableau 4.8, p. 68",
+      "description": "rs lorsque la saillie extérieure est revêtue sur trois faces (m²·°C/W)",
+      "D": [0.05, 0.10, 0.15, 0.20, 0.25],
+      "r_e": [0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0],
+      "matrice": [
+        [0.44, 0.57, 0.71, 0.84, 0.98, 1.11, 1.25, 1.52, 1.79],
+        [0.37, 0.47, 0.57, 0.67, 0.77, 0.87, 0.97, 1.17, 1.37],
+        [0.33, 0.40, 0.48, 0.56, 0.64, 0.71, 0.79, 0.94, 1.10],
+        [0.30, 0.36, 0.43, 0.49, 0.56, 0.62, 0.69, 0.82, 0.95],
+        [0.28, 0.33, 0.39, 0.44, 0.50, 0.55, 0.61, 0.72, 0.83]
+      ]
+    },
+    "rs_partiel": {
+      "source": "Tableau 4.9, p. 68",
+      "description": "rs pour revêtement partiel sur deux faces (m²·°C/W)",
+      "l": [0.20, 0.30, 0.40, 0.50, 0.60],
+      "r_i": [0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0],
+      "matrice": [
+        [0.24, 0.25, 0.26, 0.27, 0.27, 0.28, 0.29, 0.30, 0.32],
+        [0.25, 0.26, 0.26, 0.27, 0.28, 0.29, 0.30, 0.32, 0.34],
+        [0.25, 0.26, 0.26, 0.28, 0.29, 0.30, 0.31, 0.33, 0.36],
+        [0.25, 0.26, 0.26, 0.29, 0.30, 0.31, 0.32, 0.35, 0.37],
+        [0.26, 0.27, 0.27, 0.29, 0.31, 0.32, 0.33, 0.36, 0.38]
+      ]
+    }
+  }
+}
