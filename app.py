@@ -1,5 +1,7 @@
 import streamlit as st
 import json
+import trimesh
+import plotly.graph_objects as go
 
 # المسارات
 PATH_COMMUNES = [
@@ -122,5 +124,28 @@ st.write(f"Majoration forfaitaire / الزيادة الافتراضية = {ponts
 
 # عرض نموذج ثلاثي الأبعاد
 st.subheader(translations["3d_model"][lang])
-st.write("هنا يمكن عرض نموذج BasicHouse 3D OBJECT")
-st.file_uploader("Upload BasicHouse.3D OBJECT", type=["obj", "3d", "3ds"], key="3d_upload")
+uploaded_file = st.file_uploader("Upload 3D Model", type=["obj", "stl", "ply", "3ds"], key="3d_upload")
+
+if uploaded_file is not None:
+    try:
+        mesh = trimesh.load(uploaded_file, file_type=None)  # يكتشف النوع تلقائيًا
+        vertices = mesh.vertices
+        faces = mesh.faces
+
+        fig = go.Figure(data=[
+            go.Mesh3d(
+                x=vertices[:,0],
+                y=vertices[:,1],
+                z=vertices[:,2],
+                i=faces[:,0],
+                j=faces[:,1],
+                k=faces[:,2],
+                color='lightblue',
+                opacity=0.50
+            )
+        ])
+        fig.update_layout(scene=dict(aspectmode="data"))
+        st.plotly_chart(fig)
+
+    except Exception as e:
+        st.error(f"تعذر قراءة الملف: {e}")
