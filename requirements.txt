@@ -1,6 +1,4 @@
 streamlit
-pyvista
-stpyvista
-trimesh
 plotly
+trimesh
 numpy
