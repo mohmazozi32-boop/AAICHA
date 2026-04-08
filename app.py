@@ -1,33 +1,25 @@
 import streamlit as st
 import json
-import plotly.graph_objects as go
-import ifcopenshell
-import urllib.request
-import os
 
-# ---------- إعداد الصفحة ----------
-st.set_page_config(page_title="Thermal Building App", layout="wide", initial_sidebar_state="expanded")
-
-# ---------- Sidebar الوضع ----------
-theme = st.sidebar.radio("Theme / الوضع", ["Light", "Dark"])
-if theme == "Dark":
-    st.markdown("""
-        <style>
-        body { background-color: #0E1117; color: #FAFAFA; }
-        .css-1d391kg { background-color: #0E1117; }
-        .stSlider > div > div { color: #FAFAFA; }
-        </style>
-        """, unsafe_allow_html=True)
-
-# ---------- تحميل ملفات JSON ----------
-PATH_COMMUNES = "data_communes_algeria.json"
+# المسارات
+PATH_COMMUNES = [
+    "communes_zone_A.json",
+    "communes_zone_B.json",
+    "communes_zone_C.json",
+    "communes_zone_A1.json",
+    "communes_zone_Inconnue.json"
+]
 PATH_MATERIAUX = "dtr_materiaux.json"
 PATH_PAROIS = "dtr_parois_enterrees.json"
 PATH_PONTS = "dtr_ponts_thermiques.json"
 
-with open(PATH_COMMUNES, "r", encoding="utf-8") as f:
-    communes_data = json.load(f)
+# تحميل بيانات الولايات من جميع الملفات
+communes_data = []
+for path in PATH_COMMUNES:
+    with open(path, "r", encoding="utf-8") as f:
+        communes_data.extend(json.load(f))
 
+# تحميل باقي الملفات
 with open(PATH_MATERIAUX, "r", encoding="utf-8") as f:
     materiaux_data = json.load(f)
 
@@ -37,145 +29,192 @@ with open(PATH_PAROIS, "r", encoding="utf-8") as f:
 with open(PATH_PONTS, "r", encoding="utf-8") as f:
     ponts_thermiques = json.load(f)
 
-# ---------- الترجمة ----------
+# قاموس الترجمة
 translations = {
-    "title": {"ar": "🏗️ حساب العزل الحراري + نموذج 3D", "fr": "🏗️ Calcul thermique + modèle 3D"},
-    "wilaya": {"ar": "اختر الولاية", "fr": "Choisir la wilaya"},
-    "dimensions": {"ar": "أبعاد المبنى", "fr": "Dimensions du bâtiment"},
-    "length": {"ar": "الطول", "fr": "Longueur"},
-    "width": {"ar": "العرض", "fr": "Largeur"},
-    "height": {"ar": "الارتفاع", "fr": "Hauteur"},
-    "paroi": {"ar": "نوع الجدار", "fr": "Type de mur"},
-    "result": {"ar": "النتائج", "fr": "Résultats"},
-    "depth": {"ar": "عمق الدفن", "fr": "Profondeur"},
-    "isolation": {"ar": "نوع العزل", "fr": "Type isolation"}
+    "lang_choice": {"ar": "اختر اللغة", "fr": "Choisir la langue"},
+    "title": {"ar": "🏗️ مشروع التخرج - حساب العزل الحراري", "fr": "🏗️ Projet de fin d'études - Calcul d'isolation thermique"},
+    "wilaya": {"ar": "اختر الولاية:", "fr": "Choisir la wilaya:"},
+    "zone": {"ar": "التصنيف الحراري:", "fr": "Zone thermique:"},
+    "dimensions": {"ar": "أدخل أبعاد المبنى", "fr": "Entrer les dimensions du bâtiment"},
+    "length": {"ar": "الطول (متر)", "fr": "Longueur (m)"},
+    "width": {"ar": "العرض (متر)", "fr": "Largeur (m)"},
+    "height": {"ar": "الارتفاع (متر)", "fr": "Hauteur (m)"},
+    "wall_area": {"ar": "المساحة الكلية للجدران", "fr": "Surface totale des murs"},
+    "paroi": {"ar": "اختر نوع الجدار:", "fr": "Choisir le type de mur:"},
+    "depth": {"ar": "عمق الدفن (متر)", "fr": "Profondeur d'enfouissement (m)"},
+    "isolation_type": {"ar": "نوع العزل:", "fr": "Type d'isolation:"},
+    "ponts": {"ar": "حساب الجسور الحرارية", "fr": "Calcul des ponts thermiques"},
+    "result": {"ar": "نتائج الحساب", "fr": "Résultats du calcul"},
+    "needs_insulation": {"ar": "⚠️ يحتاج إلى عزل إضافي", "fr": "⚠️ Nécessite une isolation supplémentaire"},
+    "ok": {"ar": "✅ مطابق لمتطلبات العزل", "fr": "✅ Conforme aux exigences d'isolation"},
+    "3d_model": {"ar": "🏠 نموذج ثلاثي الأبعاد", "fr": "🏠 Modèle 3D"}
 }
 
-# ---------- اختيار اللغة ----------
-lang = st.sidebar.radio("Language / اللغة", ["ar", "fr"])
-
-# ---------- العنوان ----------
+# اختيار اللغة
+lang = st.radio(translations["lang_choice"]["ar"] + " / " + translations["lang_choice"]["fr"], ["ar", "fr"])
 st.title(translations["title"][lang])
 
-# ---------- Sidebar ----------
-st.sidebar.header("⚙️ Paramètres")
-wilayas = [w["name"] for w in communes_data["wilayas"]]
-selected_wilaya = st.sidebar.selectbox(translations["wilaya"][lang], wilayas)
+# اختيار الولاية
+wilayas = [f"{w['name']} ({w['thermal_zone_winter']})" for w in communes_data]
+selected_wilaya = st.selectbox(translations["wilaya"][lang], wilayas)
 
-length = st.sidebar.slider(translations["length"][lang], 1, 50, 10)
-width = st.sidebar.slider(translations["width"][lang], 1, 50, 8)
-height = st.sidebar.slider(translations["height"][lang], 1, 50, 3)
+wilaya_info = next(w for w in communes_data if f"{w['name']} ({w['thermal_zone_winter']})" == selected_wilaya)
+zone = wilaya_info["thermal_zone_winter"]
+st.write(f"{translations['zone'][lang]} {zone}")
 
-# ---------- حساب المساحة ----------
+# إدخال الأبعاد
+st.subheader(translations["dimensions"][lang])
+length = st.number_input(translations["length"][lang], 10.0)
+width = st.number_input(translations["width"][lang], 8.0)
+height = st.number_input(translations["height"][lang], 3.0)
+
 wall_area = 2 * height * (length + width)
+st.write(f"{translations['wall_area'][lang]}: {wall_area:.2f} m²")
 
-# ---------- اختيار الجدار ----------
+# اختيار نوع الجدار
 parois = [p["type"] for p in materiaux_data["parois_types"]]
-selected_paroi = st.sidebar.selectbox(translations["paroi"][lang], parois)
+selected_paroi = st.selectbox(translations["paroi"][lang], parois)
 paroi_info = next(p for p in materiaux_data["parois_types"] if p["type"] == selected_paroi)
 K = paroi_info["coefficient_K_W_m2C"]
 
-# ---------- Layout ----------
-col1, col2 = st.columns([1, 2])
+st.subheader(translations["result"][lang])
+st.write(f"K = {K} W/m²·°C")
+if K > 0.6:
+    st.error(translations["needs_insulation"][lang])
+else:
+    st.success(translations["ok"][lang])
 
-# ---------- معلومات ----------
-with col1:
-    st.subheader("📊 Infos")
-    st.write(f"Surface murs = {wall_area:.2f} m²")
-    st.write(f"K = {K}")
-    if K > 0.6:
-        st.error("⚠️ Mauvaise isolation")
-        color = "red"
-    else:
-        st.success("✅ Bonne isolation")
-        color = "green"
+# حساب الجدران المدفونة
+st.subheader("🏗️ Parois enterrées / الجدران المدفونة")
+z = st.number_input(translations["depth"][lang], -6.0, 1.5, -1.5)
+isolation_type = st.selectbox(translations["isolation_type"][lang], ["بدون عزل", "Sans isolation", "عزل أفقي كامل", "Isolation horizontale totale"])
 
-# ---------- 3D Model من Google Drive ----------
-with col2:
-    st.subheader("🏗️ Modèle 3D")
-    IFC_URL = "https://drive.google.com/uc?export=download&id=1YjhAq80CD4oUUO1k6yDocnDsYVban9NY"
-    LOCAL_IFC_FILE = "BasicHouse.ifc"
-
-    if not os.path.exists(LOCAL_IFC_FILE):
-        st.info("Téléchargement du fichier IFC depuis Google Drive...")
-        urllib.request.urlretrieve(IFC_URL, LOCAL_IFC_FILE)
-        st.success("Fichier téléchargé avec succès !")
-
-    try:
-        ifc_file = ifcopenshell.open(LOCAL_IFC_FILE)
-        walls = ifc_file.by_type("IfcWall")
-
-        x, y, z = [], [], []
-        i_faces, j_faces, k_faces = [], [], []
-        vertex_idx = 0
-
-        for wall in walls:
-            if hasattr(wall, "Representation") and wall.Representation:
-                bbox = wall.bbox()
-                x0, y0, z0 = bbox[0]
-                x1, y1, z1 = bbox[1]
-
-                verts = [
-                    [x0, y0, z0], [x1, y0, z0], [x1, y1, z0], [x0, y1, z0],
-                    [x0, y0, z1], [x1, y0, z1], [x1, y1, z1], [x0, y1, z1]
-                ]
-                for v in verts:
-                    x.append(v[0])
-                    y.append(v[1])
-                    z.append(v[2])
-
-                faces = [
-                    [0,1,2],[0,2,3],[4,5,6],[4,6,7],
-                    [0,1,5],[0,5,4],[2,3,7],[2,7,6],
-                    [0,3,7],[0,7,4],[1,2,6],[1,6,5]
-                ]
-                for f in faces:
-                    i_faces.append(f[0]+vertex_idx)
-                    j_faces.append(f[1]+vertex_idx)
-                    k_faces.append(f[2]+vertex_idx)
-
-                vertex_idx += 8
-
-        fig = go.Figure(data=[go.Mesh3d(
-            x=x, y=y, z=z,
-            i=i_faces, j=j_faces, k=k_faces,
-            color=color,
-            opacity=0.7
-        )])
-
-        fig.update_layout(
-            scene=dict(
-                xaxis_title='X',
-                yaxis_title='Y',
-                zaxis_title='Z',
-                bgcolor='#0E1117' if theme == "Dark" else '#FFFFFF',
-                xaxis=dict(backgroundcolor='black' if theme=="Dark" else 'white'),
-                yaxis=dict(backgroundcolor='black' if theme=="Dark" else 'white'),
-                zaxis=dict(backgroundcolor='black' if theme=="Dark" else 'white'),
-            ),
-            margin=dict(l=0, r=0, b=0, t=0)
-        )
-
-        st.plotly_chart(fig, use_container_width=True)
-
-    except Exception as e:
-        st.error(f"Erreur lors du chargement du fichier IFC: {e}")
-
-# ---------- Parois enterrées ----------
-st.subheader("🏗️ Parois enterrées")
-z_val = st.slider(translations["depth"][lang], -6.0, 1.5, -1.5)
-isolation_type = st.selectbox(translations["isolation"][lang], ["Sans isolation", "Isolation horizontale totale"])
-if "Sans" in isolation_type:
+if "Sans" in isolation_type or "بدون" in isolation_type:
     valeurs = parois_enterrees["planchers_bas"]["sans_isolation"]["valeurs"]
     ks_value = None
     for v in valeurs:
-        if v["z_min"] <= z_val <= v["z_max"]:
+        if v["z_min"] <= z <= v["z_max"]:
             ks_value = v["ks"]
             break
     if ks_value:
         st.write(f"ks = {ks_value} W/m·°C")
 
-# ---------- Ponts thermiques ----------
-st.subheader("🌡️ Ponts thermiques")
+# حساب الجسور الحرارية
+st.subheader(translations["ponts"][lang])
 ponts = ponts_thermiques["forfaitaire"]["valeur"]
-st.write(f"Majoration = {ponts*100}%")
+st.write(f"Majoration forfaitaire / الزيادة الافتراضية = {ponts*100}%")
+
+# عرض نموذج ثلاثي الأبعاد
+st.subheader(translations["3d_model"][lang])
+st.write("هنا يمكن عرض نموذج BasicHouse 3D OBJECT")
+st.file_uploader("Upload BasicHouse.3D OBJECT", type=["obj", "3d", "3ds"])
+import streamlit as st
+import json
+
+# المسارات
+PATH_COMMUNES = [
+    "communes_zone_A.json",
+    "communes_zone_B.json",
+    "communes_zone_C.json",
+    "communes_zone_A1.json",
+    "communes_zone_Inconnue.json"
+]
+PATH_MATERIAUX = "dtr_materiaux.json"
+PATH_PAROIS = "dtr_parois_enterrees.json"
+PATH_PONTS = "dtr_ponts_thermiques.json"
+
+# تحميل بيانات الولايات من جميع الملفات
+communes_data = []
+for path in PATH_COMMUNES:
+    with open(path, "r", encoding="utf-8") as f:
+        communes_data.extend(json.load(f))
+
+# تحميل باقي الملفات
+with open(PATH_MATERIAUX, "r", encoding="utf-8") as f:
+    materiaux_data = json.load(f)
+
+with open(PATH_PAROIS, "r", encoding="utf-8") as f:
+    parois_enterrees = json.load(f)
+
+with open(PATH_PONTS, "r", encoding="utf-8") as f:
+    ponts_thermiques = json.load(f)
+
+# قاموس الترجمة
+translations = {
+    "lang_choice": {"ar": "اختر اللغة", "fr": "Choisir la langue"},
+    "title": {"ar": "🏗️ مشروع التخرج - حساب العزل الحراري", "fr": "🏗️ Projet de fin d'études - Calcul d'isolation thermique"},
+    "wilaya": {"ar": "اختر الولاية:", "fr": "Choisir la wilaya:"},
+    "zone": {"ar": "التصنيف الحراري:", "fr": "Zone thermique:"},
+    "dimensions": {"ar": "أدخل أبعاد المبنى", "fr": "Entrer les dimensions du bâtiment"},
+    "length": {"ar": "الطول (متر)", "fr": "Longueur (m)"},
+    "width": {"ar": "العرض (متر)", "fr": "Largeur (m)"},
+    "height": {"ar": "الارتفاع (متر)", "fr": "Hauteur (m)"},
+    "wall_area": {"ar": "المساحة الكلية للجدران", "fr": "Surface totale des murs"},
+    "paroi": {"ar": "اختر نوع الجدار:", "fr": "Choisir le type de mur:"},
+    "depth": {"ar": "عمق الدفن (متر)", "fr": "Profondeur d'enfouissement (m)"},
+    "isolation_type": {"ar": "نوع العزل:", "fr": "Type d'isolation:"},
+    "ponts": {"ar": "حساب الجسور الحرارية", "fr": "Calcul des ponts thermiques"},
+    "result": {"ar": "نتائج الحساب", "fr": "Résultats du calcul"},
+    "needs_insulation": {"ar": "⚠️ يحتاج إلى عزل إضافي", "fr": "⚠️ Nécessite une isolation supplémentaire"},
+    "ok": {"ar": "✅ مطابق لمتطلبات العزل", "fr": "✅ Conforme aux exigences d'isolation"},
+    "3d_model": {"ar": "🏠 نموذج ثلاثي الأبعاد", "fr": "🏠 Modèle 3D"}
+}
+
+# اختيار اللغة
+lang = st.radio(translations["lang_choice"]["ar"] + " / " + translations["lang_choice"]["fr"], ["ar", "fr"])
+st.title(translations["title"][lang])
+
+# اختيار الولاية
+wilayas = [f"{w['name']} ({w['thermal_zone_winter']})" for w in communes_data]
+selected_wilaya = st.selectbox(translations["wilaya"][lang], wilayas)
+
+wilaya_info = next(w for w in communes_data if f"{w['name']} ({w['thermal_zone_winter']})" == selected_wilaya)
+zone = wilaya_info["thermal_zone_winter"]
+st.write(f"{translations['zone'][lang]} {zone}")
+
+# إدخال الأبعاد
+st.subheader(translations["dimensions"][lang])
+length = st.number_input(translations["length"][lang], 10.0)
+width = st.number_input(translations["width"][lang], 8.0)
+height = st.number_input(translations["height"][lang], 3.0)
+
+wall_area = 2 * height * (length + width)
+st.write(f"{translations['wall_area'][lang]}: {wall_area:.2f} m²")
+
+# اختيار نوع الجدار
+parois = [p["type"] for p in materiaux_data["parois_types"]]
+selected_paroi = st.selectbox(translations["paroi"][lang], parois)
+paroi_info = next(p for p in materiaux_data["parois_types"] if p["type"] == selected_paroi)
+K = paroi_info["coefficient_K_W_m2C"]
+
+st.subheader(translations["result"][lang])
+st.write(f"K = {K} W/m²·°C")
+if K > 0.6:
+    st.error(translations["needs_insulation"][lang])
+else:
+    st.success(translations["ok"][lang])
+
+# حساب الجدران المدفونة
+st.subheader("🏗️ Parois enterrées / الجدران المدفونة")
+z = st.number_input(translations["depth"][lang], -6.0, 1.5, -1.5)
+isolation_type = st.selectbox(translations["isolation_type"][lang], ["بدون عزل", "Sans isolation", "عزل أفقي كامل", "Isolation horizontale totale"])
+
+if "Sans" in isolation_type or "بدون" in isolation_type:
+    valeurs = parois_enterrees["planchers_bas"]["sans_isolation"]["valeurs"]
+    ks_value = None
+    for v in valeurs:
+        if v["z_min"] <= z <= v["z_max"]:
+            ks_value = v["ks"]
+            break
+    if ks_value:
+        st.write(f"ks = {ks_value} W/m·°C")
+
+# حساب الجسور الحرارية
+st.subheader(translations["ponts"][lang])
+ponts = ponts_thermiques["forfaitaire"]["valeur"]
+st.write(f"Majoration forfaitaire / الزيادة الافتراضية = {ponts*100}%")
+
+# عرض نموذج ثلاثي الأبعاد
+st.subheader(translations["3d_model"][lang])
+st.write("هنا يمكن عرض نموذج BasicHouse 3D OBJECT")
+st.file_uploader("Upload BasicHouse.3D OBJECT", type=["obj", "3d", "3ds"])
