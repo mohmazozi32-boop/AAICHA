@@ -2,8 +2,22 @@ import streamlit as st
 import json
 import plotly.graph_objects as go
 
-# ---------- إعداد الصفحة ----------
-st.set_page_config(page_title="Thermal Building App", layout="wide")
+# ---------- إعداد الصفحة مع الوضع الداكن ----------
+st.set_page_config(page_title="Thermal Building App", layout="wide", initial_sidebar_state="expanded")
+
+# ---------- Sidebar الوضع الداكن ----------
+theme = st.sidebar.radio("Theme / الوضع", ["Light", "Dark"])
+
+if theme == "Dark":
+    st.markdown(
+        """
+        <style>
+        body { background-color: #0E1117; color: #FAFAFA; }
+        .css-1d391kg { background-color: #0E1117; }
+        .stSlider > div > div { color: #FAFAFA; }
+        </style>
+        """, unsafe_allow_html=True
+    )
 
 # ---------- تحميل البيانات ----------
 PATH_COMMUNES = "data_communes_algeria.json"
@@ -84,23 +98,29 @@ with col2:
 
     x = [0, length, length, 0, 0, length, length, 0]
     y = [0, 0, width, width, 0, 0, width, width]
-    z_vals = [0, 0, 0, 0, height, height, height, height]
+    z = [0, 0, 0, 0, height, height, height, height]
 
-    fig = go.Figure(data=[
-        go.Mesh3d(
-            x=x,
-            y=y,
-            z=z_vals,
-            opacity=0.7,
-            color=color
-        )
-    ])
+    # Mesh3d indices for faces
+    i = [0, 0, 0, 1, 1, 2, 4, 5, 6, 4, 0, 1]
+    j = [1, 2, 4, 2, 5, 3, 5, 6, 7, 7, 3, 5]
+    k = [2, 3, 5, 3, 6, 7, 6, 7, 4, 0, 7, 6]
+
+    fig = go.Figure(data=[go.Mesh3d(
+        x=x, y=y, z=z,
+        i=i, j=j, k=k,
+        color=color,
+        opacity=0.7
+    )])
 
     fig.update_layout(
         scene=dict(
             xaxis_title='L',
             yaxis_title='W',
-            zaxis_title='H'
+            zaxis_title='H',
+            bgcolor='#0E1117' if theme == "Dark" else '#FFFFFF',
+            xaxis=dict(backgroundcolor='black' if theme=="Dark" else 'white'),
+            yaxis=dict(backgroundcolor='black' if theme=="Dark" else 'white'),
+            zaxis=dict(backgroundcolor='black' if theme=="Dark" else 'white'),
         ),
         margin=dict(l=0, r=0, b=0, t=0)
     )
@@ -110,7 +130,7 @@ with col2:
 # ---------- Parois enterrées ----------
 st.subheader("🏗️ Parois enterrées")
 
-z = st.slider(translations["depth"][lang], -6.0, 1.5, -1.5)
+z_val = st.slider(translations["depth"][lang], -6.0, 1.5, -1.5)
 
 isolation_type = st.selectbox(
     translations["isolation"][lang],
@@ -122,7 +142,7 @@ if "Sans" in isolation_type:
     ks_value = None
 
     for v in valeurs:
-        if v["z_min"] <= z <= v["z_max"]:
+        if v["z_min"] <= z_val <= v["z_max"]:
             ks_value = v["ks"]
             break
 
