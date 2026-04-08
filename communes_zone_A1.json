@@ -1,0 +1,12 @@
+[
+    {
+        "id": 21,
+        "name": "Skikda",
+        "name_ar": "سكيكدة",
+        "established": "1984",
+        "latitude": 36.8667,
+        "longitude": 6.9167,
+        "elevation": 7,
+        "thermal_zone_winter": "A1"
+    }
+]

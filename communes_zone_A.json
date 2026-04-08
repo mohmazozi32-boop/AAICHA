@@ -1,0 +1,174 @@
+[
+    {
+        "id": 2,
+        "name": "Chlef",
+        "name_ar": "الشلف",
+        "established": "1984",
+        "latitude": 36.1646,
+        "longitude": 1.3347,
+        "elevation": 143,
+        "thermal_zone_winter": "A"
+    },
+    {
+        "id": 9,
+        "name": "Blida",
+        "name_ar": "البليدة",
+        "established": "1984",
+        "latitude": 36.48,
+        "longitude": 2.8283,
+        "elevation": 260,
+        "thermal_zone_winter": "A"
+    },
+    {
+        "id": 10,
+        "name": "Bouira",
+        "name_ar": "البويرة",
+        "established": "1984",
+        "latitude": 36.3689,
+        "longitude": 3.9,
+        "elevation": 519,
+        "thermal_zone_winter": "A"
+    },
+    {
+        "id": 13,
+        "name": "Tlemcen",
+        "name_ar": "تلمسان",
+        "established": "1984",
+        "latitude": 34.8781,
+        "longitude": -1.315,
+        "elevation": 842,
+        "thermal_zone_winter": "A"
+    },
+    {
+        "id": 15,
+        "name": "Tizi Ouzou",
+        "name_ar": "تيزي وزو",
+        "established": "1984",
+        "latitude": 36.7019,
+        "longitude": 4.05,
+        "elevation": 200,
+        "thermal_zone_winter": "A"
+    },
+    {
+        "id": 18,
+        "name": "Jijel",
+        "name_ar": "جيجل",
+        "established": "1984",
+        "latitude": 36.82,
+        "longitude": 5.7667,
+        "elevation": 5,
+        "thermal_zone_winter": "A"
+    },
+    {
+        "id": 23,
+        "name": "Annaba",
+        "name_ar": "عنابة",
+        "established": "1984",
+        "latitude": 36.9,
+        "longitude": 7.7667,
+        "elevation": 4,
+        "thermal_zone_winter": "A"
+    },
+    {
+        "id": 24,
+        "name": "Guelma",
+        "name_ar": "قالمة",
+        "established": "1984",
+        "latitude": 36.4633,
+        "longitude": 7.4331,
+        "elevation": 290,
+        "thermal_zone_winter": "A"
+    },
+    {
+        "id": 25,
+        "name": "Constantine",
+        "name_ar": "قسنطينة",
+        "established": "1984",
+        "latitude": 36.365,
+        "longitude": 6.6147,
+        "elevation": 694,
+        "thermal_zone_winter": "A"
+    },
+    {
+        "id": 27,
+        "name": "Mostaganem",
+        "name_ar": "مستغانم",
+        "established": "1984",
+        "latitude": 35.9306,
+        "longitude": 0.0892,
+        "elevation": 108,
+        "thermal_zone_winter": "A"
+    },
+    {
+        "id": 29,
+        "name": "Mascara",
+        "name_ar": "معسكر",
+        "established": "1984",
+        "latitude": 35.3833,
+        "longitude": 0.15,
+        "elevation": 590,
+        "thermal_zone_winter": "A"
+    },
+    {
+        "id": 31,
+        "name": "Oran",
+        "name_ar": "وهران",
+        "established": "1984",
+        "latitude": 35.6969,
+        "longitude": -0.6331,
+        "elevation": 90,
+        "region": "North",
+        "area_km2": 2114,
+        "phone_code": "041",
+        "postal_code": "31000",
+        "population_approx": 1500000,
+        "coastal": true,
+        "notable_features": [
+            "Second largest city",
+            "Santa Cruz Fort",
+            "Mediterranean port",
+            "Ahmed Zabana Stadium"
+        ],
+        "thermal_zone_winter": "A"
+    },
+    {
+        "id": 36,
+        "name": "El Tarf",
+        "name_ar": "الطارف",
+        "established": "1984",
+        "latitude": 36.7667,
+        "longitude": 8.3,
+        "elevation": 22,
+        "thermal_zone_winter": "A"
+    },
+    {
+        "id": 42,
+        "name": "Tipaza",
+        "name_ar": "تيبازة",
+        "established": "1984",
+        "latitude": 36.55,
+        "longitude": 2.45,
+        "elevation": 30,
+        "thermal_zone_winter": "A"
+    },
+    {
+        "id": 43,
+        "name": "Mila",
+        "name_ar": "ميلة",
+        "established": "1984",
+        "latitude": 36.4503,
+        "longitude": 6.2642,
+        "elevation": 451,
+        "thermal_zone_winter": "A"
+    },
+    {
+        "id": 48,
+        "name": "Relizane",
+        "name_ar": "غليزان",
+        "established": "1984",
+        "latitude": 35.7372,
+        "longitude": 0.5558,
+        "elevation": 89,
+        "thermal_zone_winter": "A"
+    }
+]

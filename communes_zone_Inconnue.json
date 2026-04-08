@@ -1,0 +1,323 @@
+[
+    {
+        "id": 6,
+        "name": "Béjaïa",
+        "name_ar": "بجاية",
+        "established": "1984",
+        "latitude": 36.7525,
+        "longitude": 5.0553,
+        "elevation": 1,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 8,
+        "name": "Béchar",
+        "name_ar": "بشار",
+        "established": "1984",
+        "latitude": 31.6167,
+        "longitude": -2.2167,
+        "elevation": 806,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 12,
+        "name": "Tébessa",
+        "name_ar": "تبسة",
+        "established": "1984",
+        "latitude": 35.4042,
+        "longitude": 8.1242,
+        "elevation": 813,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 16,
+        "name": "Algiers",
+        "name_ar": "الجزائر",
+        "established": "1984",
+        "latitude": 36.7538,
+        "longitude": 3.0588,
+        "elevation": 424,
+        "region": "North",
+        "area_km2": 809,
+        "phone_code": "021",
+        "postal_code": "16000",
+        "population_approx": 3000000,
+        "capital": true,
+        "coastal": true,
+        "notable_features": [
+            "Capital city",
+            "Casbah (UNESCO)",
+            "Notre Dame d'Afrique",
+            "Port of Algiers",
+            "Mediterranean coast"
+        ],
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 19,
+        "name": "Sétif",
+        "name_ar": "سطيف",
+        "established": "1984",
+        "latitude": 36.1833,
+        "longitude": 5.4,
+        "elevation": 1081,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 20,
+        "name": "Saïda",
+        "name_ar": "سعيدة",
+        "established": "1984",
+        "latitude": 34.8333,
+        "longitude": 0.15,
+        "elevation": 748,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 22,
+        "name": "Sidi Bel Abbès",
+        "name_ar": "سيدي بلعباس",
+        "established": "1984",
+        "latitude": 35.19,
+        "longitude": -0.64,
+        "elevation": 485,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 26,
+        "name": "Médéa",
+        "name_ar": "المدية",
+        "established": "1984",
+        "latitude": 36.2642,
+        "longitude": 2.7539,
+        "elevation": 920,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 34,
+        "name": "Bordj Bou Arréridj",
+        "name_ar": "برج بوعريريج",
+        "established": "1984",
+        "latitude": 36.0686,
+        "longitude": 4.7678,
+        "elevation": 927,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 35,
+        "name": "Boumerdès",
+        "name_ar": "بومرداس",
+        "established": "1984",
+        "latitude": 36.7606,
+        "longitude": 3.4722,
+        "elevation": 5,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 44,
+        "name": "Aïn Defla",
+        "name_ar": "عين الدفلى",
+        "established": "1984",
+        "latitude": 36.2639,
+        "longitude": 1.9681,
+        "elevation": 299,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 45,
+        "name": "Naâma",
+        "name_ar": "النعامة",
+        "established": "1984",
+        "latitude": 33.2667,
+        "longitude": -0.3167,
+        "elevation": 1166,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 46,
+        "name": "Aïn Témouchent",
+        "name_ar": "عين تموشنت",
+        "established": "1984",
+        "latitude": 35.2989,
+        "longitude": -1.1397,
+        "elevation": 232,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 47,
+        "name": "Ghardaïa",
+        "name_ar": "غرداية",
+        "established": "1984",
+        "latitude": 32.4906,
+        "longitude": 3.6739,
+        "elevation": 469,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 49,
+        "name": "Timimoune",
+        "name_ar": "تيميمون",
+        "established": "2019",
+        "latitude": 29.2667,
+        "longitude": 0.2333,
+        "elevation": 311,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 50,
+        "name": "Bordj Badji Mokhtar",
+        "name_ar": "برج باجي مختار",
+        "established": "2019",
+        "latitude": 21.3272,
+        "longitude": 0.9542,
+        "elevation": 397,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 51,
+        "name": "Ouled Djellal",
+        "name_ar": "أولاد جلال",
+        "established": "2019",
+        "latitude": 34.4139,
+        "longitude": 4.9686,
+        "elevation": 132,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 52,
+        "name": "In Salah",
+        "name_ar": "عين صالح",
+        "established": "2019",
+        "latitude": 27.2,
+        "longitude": 2.4667,
+        "elevation": 268,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 53,
+        "name": "In Guezzam",
+        "name_ar": "عين قزام",
+        "established": "2019",
+        "latitude": 19.5667,
+        "longitude": 5.7667,
+        "elevation": 397,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 54,
+        "name": "Touggourt",
+        "name_ar": "تقرت",
+        "established": "2019",
+        "latitude": 33.1067,
+        "longitude": 6.0589,
+        "elevation": 85,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 55,
+        "name": "Djanet",
+        "name_ar": "جانت",
+        "established": "2019",
+        "latitude": 24.5542,
+        "longitude": 9.4844,
+        "elevation": 1053,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 56,
+        "name": "El M'Ghair",
+        "name_ar": "المغير",
+        "established": "2019",
+        "latitude": 33.9667,
+        "longitude": 5.9167,
+        "elevation": 73,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 57,
+        "name": "Béni Abbès",
+        "name_ar": "بني عباس",
+        "established": "2019",
+        "latitude": 30.1333,
+        "longitude": -2.1667,
+        "elevation": 503,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 58,
+        "name": "El Menia",
+        "name_ar": "المنيعة",
+        "established": "2019",
+        "latitude": 30.5833,
+        "longitude": 2.8667,
+        "elevation": 396,
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 67,
+        "name": "Bir El Ater",
+        "name_ar": "بئر العاتر",
+        "established": "2025",
+        "latitude": 34.745,
+        "longitude": 8.0597,
+        "elevation": 860,
+        "region": "High Plateaus",
+        "area_km2": 1900,
+        "phone_code": "037",
+        "postal_code": "12400",
+        "population_approx": 95000,
+        "parent_wilaya": "Tébessa",
+        "new_2025": true,
+        "notable_features": [
+            "Mining center",
+            "Phosphate deposits",
+            "Border proximity"
+        ],
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 68,
+        "name": "Ksar El Boukhari",
+        "name_ar": "قصر البخاري",
+        "established": "2025",
+        "latitude": 35.8889,
+        "longitude": 2.7492,
+        "elevation": 442,
+        "region": "High Plateaus",
+        "area_km2": 1500,
+        "phone_code": "025",
+        "postal_code": "26200",
+        "population_approx": 105000,
+        "parent_wilaya": "Médéa",
+        "new_2025": true,
+        "notable_features": [
+            "Agricultural region",
+            "Cereal cultivation",
+            "Livestock"
+        ],
+        "thermal_zone_winter": "Inconnue"
+    },
+    {
+        "id": 69,
+        "name": "El Aricha",
+        "name_ar": "العريشة",
+        "established": "2025",
+        "latitude": 31.9167,
+        "longitude": -1.1167,
+        "elevation": 950,
+        "region": "Sahara",
+        "area_km2": 2800,
+        "phone_code": "049",
+        "postal_code": "08400",
+        "population_approx": 45000,
+        "parent_wilaya": "Béchar",
+        "new_2025": true,
+        "notable_features": [
+            "Border town",
+            "Trade hub",
+            "Desert landscapes",
+            "Cross-border commerce"
+        ],
+        "thermal_zone_winter": "Inconnue"
+    }
+]

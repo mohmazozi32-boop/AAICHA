@@ -1,0 +1,116 @@
+[
+    {
+        "id": 4,
+        "name": "Oum El Bouaghi",
+        "name_ar": "أم البواقي",
+        "established": "1984",
+        "latitude": 35.8753,
+        "longitude": 7.1133,
+        "elevation": 893,
+        "thermal_zone_winter": "B"
+    },
+    {
+        "id": 5,
+        "name": "Batna",
+        "name_ar": "باتنة",
+        "established": "1984",
+        "latitude": 35.5558,
+        "longitude": 6.1742,
+        "elevation": 1048,
+        "thermal_zone_winter": "B"
+    },
+    {
+        "id": 14,
+        "name": "Tiaret",
+        "name_ar": "تيارت",
+        "established": "1984",
+        "latitude": 35.3711,
+        "longitude": 1.3225,
+        "elevation": 1086,
+        "thermal_zone_winter": "B"
+    },
+    {
+        "id": 32,
+        "name": "El Bayadh",
+        "name_ar": "البيض",
+        "established": "1984",
+        "latitude": 33.6833,
+        "longitude": 1.0167,
+        "elevation": 1341,
+        "thermal_zone_winter": "B"
+    },
+    {
+        "id": 38,
+        "name": "Tissemsilt",
+        "name_ar": "تيسمسيلت",
+        "established": "1984",
+        "latitude": 35.605,
+        "longitude": 1.8106,
+        "elevation": 871,
+        "thermal_zone_winter": "B"
+    },
+    {
+        "id": 40,
+        "name": "Khenchela",
+        "name_ar": "خنشلة",
+        "established": "1984",
+        "latitude": 35.4361,
+        "longitude": 7.1428,
+        "elevation": 1200,
+        "thermal_zone_winter": "B"
+    },
+    {
+        "id": 41,
+        "name": "Souk Ahras",
+        "name_ar": "سوق أهراس",
+        "established": "1984",
+        "latitude": 36.2833,
+        "longitude": 7.95,
+        "elevation": 695,
+        "thermal_zone_winter": "B"
+    },
+    {
+        "id": 59,
+        "name": "Aflou",
+        "name_ar": "أفلو",
+        "established": "2025",
+        "latitude": 34.1125,
+        "longitude": 2.1,
+        "elevation": 1426,
+        "region": "High Plateaus",
+        "area_km2": 2500,
+        "phone_code": "027",
+        "postal_code": "03400",
+        "population_approx": 120000,
+        "parent_wilaya": "Laghouat",
+        "new_2025": true,
+        "notable_features": [
+            "High altitude city",
+            "Agricultural region",
+            "Berber culture"
+        ],
+        "thermal_zone_winter": "B"
+    },
+    {
+        "id": 61,
+        "name": "Ksar Chellala",
+        "name_ar": "قصر الشلالة",
+        "established": "2025",
+        "latitude": 35.2119,
+        "longitude": 2.3158,
+        "elevation": 876,
+        "region": "High Plateaus",
+        "area_km2": 1600,
+        "phone_code": "046",
+        "postal_code": "14200",
+        "population_approx": 100000,
+        "parent_wilaya": "Tiaret",
+        "new_2025": true,
+        "notable_features": [
+            "Agricultural center",
+            "Cereal production",
+            "Livestock farming"
+        ],
+        "thermal_zone_winter": "B"
+    }
+]
