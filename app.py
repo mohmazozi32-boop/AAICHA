@@ -2,26 +2,24 @@ import streamlit as st
 import json
 import plotly.graph_objects as go
 import ifcopenshell
-import numpy as np
+import urllib.request
+import os
 
-# ---------- إعداد الصفحة مع الوضع الداكن ----------
+# ---------- إعداد الصفحة ----------
 st.set_page_config(page_title="Thermal Building App", layout="wide", initial_sidebar_state="expanded")
 
-# ---------- Sidebar الوضع الداكن ----------
+# ---------- Sidebar الوضع ----------
 theme = st.sidebar.radio("Theme / الوضع", ["Light", "Dark"])
-
 if theme == "Dark":
-    st.markdown(
-        """
+    st.markdown("""
         <style>
         body { background-color: #0E1117; color: #FAFAFA; }
         .css-1d391kg { background-color: #0E1117; }
         .stSlider > div > div { color: #FAFAFA; }
         </style>
-        """, unsafe_allow_html=True
-    )
+        """, unsafe_allow_html=True)
 
-# ---------- تحميل البيانات ----------
+# ---------- تحميل ملفات JSON ----------
 PATH_COMMUNES = "data_communes_algeria.json"
 PATH_MATERIAUX = "dtr_materiaux.json"
 PATH_PAROIS = "dtr_parois_enterrees.json"
@@ -61,7 +59,6 @@ st.title(translations["title"][lang])
 
 # ---------- Sidebar ----------
 st.sidebar.header("⚙️ Paramètres")
-
 wilayas = [w["name"] for w in communes_data["wilayas"]]
 selected_wilaya = st.sidebar.selectbox(translations["wilaya"][lang], wilayas)
 
@@ -86,7 +83,6 @@ with col1:
     st.subheader("📊 Infos")
     st.write(f"Surface murs = {wall_area:.2f} m²")
     st.write(f"K = {K}")
-
     if K > 0.6:
         st.error("⚠️ Mauvaise isolation")
         color = "red"
@@ -94,12 +90,19 @@ with col1:
         st.success("✅ Bonne isolation")
         color = "green"
 
-# ---------- 3D Model من ملف IFC ----------
+# ---------- 3D Model من Google Drive ----------
 with col2:
     st.subheader("🏗️ Modèle 3D")
+    IFC_URL = "https://drive.google.com/uc?export=download&id=1YjhAq80CD4oUUO1k6yDocnDsYVban9NY"
+    LOCAL_IFC_FILE = "BasicHouse.ifc"
+
+    if not os.path.exists(LOCAL_IFC_FILE):
+        st.info("Téléchargement du fichier IFC depuis Google Drive...")
+        urllib.request.urlretrieve(IFC_URL, LOCAL_IFC_FILE)
+        st.success("Fichier téléchargé avec succès !")
 
     try:
-        ifc_file = ifcopenshell.open("BasicHouse.ifc")
+        ifc_file = ifcopenshell.open(LOCAL_IFC_FILE)
         walls = ifc_file.by_type("IfcWall")
 
         x, y, z = [], [], []
@@ -116,7 +119,6 @@ with col2:
                     [x0, y0, z0], [x1, y0, z0], [x1, y1, z0], [x0, y1, z0],
                     [x0, y0, z1], [x1, y0, z1], [x1, y1, z1], [x0, y1, z1]
                 ]
-
                 for v in verts:
                     x.append(v[0])
                     y.append(v[1])
@@ -127,7 +129,6 @@ with col2:
                     [0,1,5],[0,5,4],[2,3,7],[2,7,6],
                     [0,3,7],[0,7,4],[1,2,6],[1,6,5]
                 ]
-
                 for f in faces:
                     i_faces.append(f[0]+vertex_idx)
                     j_faces.append(f[1]+vertex_idx)
@@ -144,9 +145,9 @@ with col2:
 
         fig.update_layout(
             scene=dict(
-                xaxis_title='L',
-                yaxis_title='W',
-                zaxis_title='H',
+                xaxis_title='X',
+                yaxis_title='Y',
+                zaxis_title='Z',
                 bgcolor='#0E1117' if theme == "Dark" else '#FFFFFF',
                 xaxis=dict(backgroundcolor='black' if theme=="Dark" else 'white'),
                 yaxis=dict(backgroundcolor='black' if theme=="Dark" else 'white'),
@@ -162,28 +163,19 @@ with col2:
 
 # ---------- Parois enterrées ----------
 st.subheader("🏗️ Parois enterrées")
-
 z_val = st.slider(translations["depth"][lang], -6.0, 1.5, -1.5)
-
-isolation_type = st.selectbox(
-    translations["isolation"][lang],
-    ["Sans isolation", "Isolation horizontale totale"]
-)
-
+isolation_type = st.selectbox(translations["isolation"][lang], ["Sans isolation", "Isolation horizontale totale"])
 if "Sans" in isolation_type:
     valeurs = parois_enterrees["planchers_bas"]["sans_isolation"]["valeurs"]
     ks_value = None
-
     for v in valeurs:
         if v["z_min"] <= z_val <= v["z_max"]:
             ks_value = v["ks"]
             break
-
     if ks_value:
         st.write(f"ks = {ks_value} W/m·°C")
 
 # ---------- Ponts thermiques ----------
 st.subheader("🌡️ Ponts thermiques")
-
 ponts = ponts_thermiques["forfaitaire"]["valeur"]
 st.write(f"Majoration = {ponts*100}%")
