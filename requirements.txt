@@ -1,5 +1,6 @@
 streamlit
-pandas
-numpy
+pyvista
+stpyvista
+trimesh
 plotly
-ifcopenshell
+numpy
