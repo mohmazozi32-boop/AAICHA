@@ -1,201 +1,51 @@
 import streamlit as st
 import json
-import os
+from scripts import categorize2, Evaluation_Formules_DTR, zonage1
 
-# =========================
-# CONFIGURATION
-# =========================
-st.set_page_config(page_title="DTR Thermal Analysis System", layout="wide")
+# إعداد الصفحة
+st.set_page_config(page_title="Évaluation Thermique Algérie", layout="wide")
 
-DATA_FILES = [
-    "data_communes_algeria.json",
-    "communes_zone_A.json",
-    "communes_zone_B.json",
-    "communes_zone_C.json",
-    "communes_zone_Inconnue.json",
-]
+st.title("منصة تقييم العزل الحراري - الجزائر 🇩🇿")
 
-# =========================
-# DATA LOADING LAYER
-# =========================
-def load_communes():
-    dataset = []
+# تحميل بيانات الولايات
+with open("data/data_communes_algeria.json", "r", encoding="utf-8") as f:
+    data = json.load(f)
 
-    for file in DATA_FILES:
-        if not os.path.exists(file):
-            continue
+wilayas = [w["name"] for w in data["wilayas"]]
 
-        try:
-            with open(file, "r", encoding="utf-8") as f:
-                data = json.load(f)
+# اختيار الولاية
+wilaya = st.selectbox("اختر الولاية", options=wilayas)
 
-                if isinstance(data, list):
-                    for item in data:
-                        if isinstance(item, dict) and "name" in item:
-                            dataset.append(item)
+# استدعاء محرك المناخ
+climate_engine = zonage1.AlgerianClimateEnricher()
+wilaya_data = climate_engine.find_wilaya_by_name(wilaya, data["wilayas"])
 
-        except Exception:
-            continue
+zone_hiver, tbe = climate_engine.determine_winter_zone(wilaya_data, data["wilayas"])
+zone_ete, conditions = climate_engine.determine_summer_zone(wilaya_data, data["wilayas"])
 
-    return dataset
+st.subheader("📊 النتائج المناخية")
+st.write(f"Zone Hiver: {zone_hiver}, Température de base: {tbe} °C")
+st.write(f"Zone Été: {zone_ete}")
+st.json(conditions)
 
+# مثال حساب حراري باستخدام Evaluation_Formules_DTR
+from scripts.Evaluation_Formules_DTR import MoteurFormulesDTR, Paroi, TypeIsolation
+moteur = MoteurFormulesDTR()
+paroi1 = Paroi("Mur béton", TypeIsolation.REPARTIE, 0.5, 0.2, 2.0)
+paroi2 = Paroi("Mur brique", TypeIsolation.REPARTIE, 0.6, 0.25, 1.8)
+kl = moteur.calculer_kl_liaison_deux_parois("isolation_repartie_identiques", paroi1, paroi2)
 
-communes = load_communes()
+st.subheader("⚙️ حساب معامل الجسر الحراري")
+st.write(f"kl = {kl} W/m.°C")
 
+# واجهة ثنائية اللغة (عربية/فرنسية)
+lang = st.radio("Choisir la langue / اختر اللغة", ["Français", "العربية"])
+if lang == "العربية":
+    st.success("تم اختيار اللغة العربية")
+else:
+    st.success("Langue française sélectionnée")
 
-# =========================
-# THERMAL ENGINE (SIMPLIFIED DTR CORE)
-# =========================
-class ThermalEngine:
-
-    @staticmethod
-    def evaluate(zone, wall_r, roof_r, insulation_type):
-        score = 0.0
-
-        zone_weights = {
-            "A": 1.2,
-            "B": 1.0,
-            "C": 0.8,
-            "Inconnue": 1.0
-        }
-
-        score += zone_weights.get(zone, 1.0)
-
-        # Walls
-        if wall_r >= 2.5:
-            score += 1.5
-        elif wall_r >= 1.5:
-            score += 1.0
-        else:
-            score += 0.3
-
-        # Roof
-        if roof_r >= 3.0:
-            score += 1.5
-        elif roof_r >= 2.0:
-            score += 1.0
-        else:
-            score += 0.4
-
-        # Insulation system
-        if insulation_type == "exterieure":
-            score += 1.2
-        elif insulation_type == "interieure":
-            score += 0.8
-        else:
-            score += 1.0
-
-        return score
-
-    @staticmethod
-    def decision(score):
-        if score >= 4.0:
-            return "Conforme"
-        elif score >= 3.0:
-            return "Acceptable"
-        return "Non conforme"
-
-
-engine = ThermalEngine()
-
-
-# =========================
-# VALIDATION
-# =========================
-if not communes:
-    st.error("Aucune donnée chargée. Vérifier les fichiers JSON.")
-    st.stop()
-
-
-# =========================
-# UI LAYER
-# =========================
-st.title("DTR Thermal Building Verification System")
-
-st.write(
-    "Système d’évaluation thermique basé sur les données communales et paramètres du bâtiment."
-)
-
-
-# =========================
-# CITY SELECTION
-# =========================
-cities = sorted([
-    c.get("name")
-    for c in communes
-    if isinstance(c, dict) and c.get("name")
-])
-
-selected_city = st.selectbox("Commune", cities)
-
-city = next((c for c in communes if c.get("name") == selected_city), None)
-
-
-# =========================
-# INPUT PARAMETERS
-# =========================
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    insulation_type = st.selectbox(
-        "Système d’isolation",
-        ["repartie", "interieure", "exterieure"]
-    )
-
-with col2:
-    wall_r = st.number_input("Résistance thermique murs (R)", 0.1, 10.0, 1.5)
-
-with col3:
-    roof_r = st.number_input("Résistance thermique toiture (R)", 0.1, 10.0, 2.0)
-
-
-# =========================
-# CITY INFORMATION PANEL
-# =========================
-if city:
-    st.subheader("Données climatiques de la commune")
-
-    st.write({
-        "Nom": city.get("name"),
-        "Nom arabe": city.get("name_ar"),
-        "Zone thermique hiver": city.get("thermal_zone_winter"),
-        "Altitude": city.get("elevation"),
-        "Latitude": city.get("latitude"),
-        "Longitude": city.get("longitude")
-    })
-
-
-# =========================
-# ANALYSIS
-# =========================
-if st.button("Lancer l’évaluation thermique"):
-
-    if not city:
-        st.error("Commune non valide")
-        st.stop()
-
-    zone = city.get("thermal_zone_winter", "Inconnue")
-
-    score = engine.evaluate(zone, wall_r, roof_r, insulation_type)
-    result = engine.decision(score)
-
-    st.subheader("Résultat de l’analyse")
-
-    st.write("Statut :", result)
-    st.write("Score :", round(score, 2))
-
-
-    # Engineering interpretation
-    st.subheader("Interprétation technique")
-
-    if result == "Non conforme":
-        st.write("Le bâtiment présente des pertes thermiques importantes.")
-        st.write("Recommandation : augmentation de l’isolation ou correction des ponts thermiques.")
-
-    elif result == "Acceptable":
-        st.write("Performance moyenne. Optimisation recommandée.")
-        st.write("Recommandation : améliorer toiture et traitement des jonctions.")
-
-    else:
-        st.write("Performance thermique conforme aux exigences générales.")
-        st.write("Système d’isolation globalement cohérent.")
+# وضع نهار/ليل
+theme = st.radio("Mode d'affichage", ["Jour", "Nuit"])
+if theme == "Nuit":
+    st.markdown("<style>body{background-color:#1e1e1e;color:white;}</style>", unsafe_allow_html=True)
